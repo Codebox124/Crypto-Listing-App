@@ -1,4 +1,4 @@
-Title: Coinmoney : Your Comprehensive Crypto Listing App
+Coinmoney : Your Comprehensive Crypto Listing App
 
 Description:
 Coinmoney is a cutting-edge mobile application designed to provide users with a comprehensive listing of cryptocurrencies, along with key information and features to help them stay informed and make informed decisions in the dynamic world of cryptocurrencies. Whether you're a seasoned investor, a newcomer to the crypto space, or simply curious about the latest trends, Coinmoney has something for everyone.
