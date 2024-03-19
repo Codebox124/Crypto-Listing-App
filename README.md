@@ -23,4 +23,9 @@ Educational Resources: Access educational resources, tutorials, and guides to de
 Security and Privacy: Rest assured knowing that your data and transactions are secure with robust encryption and privacy measures.
 
 Cross-Platform Compatibility: Access CryptoList on various devices, including smartphones, tablets, and desktops, with synchronized data across platforms for seamless usability.
+
+<img width="375" alt="HOME (1)" src="https://github.com/Codebox124/Crypto-Listing-App/assets/105174934/221c9db6-ab25-48de-a14b-57916c8dc618">
+
+<img width="375" alt="Spot" src="https://github.com/Codebox124/Crypto-Listing-App/assets/105174934/dcbc7da4-4d30-47de-9f99-f47e07f30b3b">
+
 ![Onboarding 1](https://github.com/Codebox124/Crypto-Listing-App/assets/105174934/ea9814f0-583d-439c-a871-4106c01bca6a)
