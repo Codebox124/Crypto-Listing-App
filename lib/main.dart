@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import "routes/app_pages.dart";
-import 'utils/color_lib.dart';
+
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

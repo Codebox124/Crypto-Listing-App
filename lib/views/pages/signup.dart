@@ -51,11 +51,15 @@ class SignupPage extends StatelessWidget {
                         border: Border.all(
                       color: ColorLib.koutline,
                     )),
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Row(
                         children: [
-                          Text(
+                          Image.asset("assets/img/Facebook.png"),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          const Text(
                             "Continue with Facebook",
                           ),
                         ],
@@ -71,11 +75,15 @@ class SignupPage extends StatelessWidget {
                         border: Border.all(
                       color: ColorLib.koutline,
                     )),
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Row(
                         children: [
-                          Text(
+                          Image.asset("assets/img/Google.png"),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          const Text(
                             "Continue with Google",
                           ),
                         ],
@@ -91,12 +99,44 @@ class SignupPage extends StatelessWidget {
                         border: Border.all(
                       color: ColorLib.koutline,
                     )),
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Row(
                         children: [
-                          Text(
+                          Image.asset("assets/img/Apple.png"),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          const Text(
                             "Continue with Apple",
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Container(
+                    height: 48,
+                    decoration: const BoxDecoration(
+                        color: ColorLib.kPrimary,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(5),
+                        )),
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Center(
+                            child: Text(
+                              textAlign: TextAlign.center,
+                              "Sign up with email",
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -104,8 +144,41 @@ class SignupPage extends StatelessWidget {
                   ),
                 ],
               ),
-              const Column(
-                children: [],
+              const Spacer(),
+              Column(
+                children: [
+                  const Text("Already have an account?"),
+                  const SizedBox(
+                    height: 36,
+                  ),
+                  Container(
+                    height: 48,
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                            color: ColorLib.kPrimary,
+                            strokeAlign: BorderSide.strokeAlignOutside),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(5),
+                        )),
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Center(
+                            child: Text(
+                              textAlign: TextAlign.center,
+                              "Sign In",
+                              style: TextStyle(
+                                color: ColorLib.kPrimary,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               )
             ],
           ),

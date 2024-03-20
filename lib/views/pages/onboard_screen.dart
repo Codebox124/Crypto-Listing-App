@@ -90,7 +90,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         child: Column(
           children: [
             const SizedBox(
-              height: 30,
+              height: 40,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
