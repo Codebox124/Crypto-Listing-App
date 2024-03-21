@@ -1,5 +1,7 @@
+import 'package:crypto_app/routes/app_routes.dart';
 import 'package:crypto_app/utils/color_lib.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SignupPage extends StatelessWidget {
   const SignupPage({super.key});
@@ -151,30 +153,36 @@ class SignupPage extends StatelessWidget {
                   const SizedBox(
                     height: 36,
                   ),
-                  Container(
-                    height: 48,
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            color: ColorLib.kPrimary,
-                            strokeAlign: BorderSide.strokeAlignOutside),
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(5),
-                        )),
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Center(
-                            child: Text(
-                              textAlign: TextAlign.center,
-                              "Sign In",
-                              style: TextStyle(
-                                color: ColorLib.kPrimary,
+                  GestureDetector(
+                    onTap: () {
+                      GoRouter.of(context)
+                          .pushNamed(AppRoutes.signin);
+                    },
+                    child: Container(
+                      height: 48,
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                              color: ColorLib.kPrimary,
+                              strokeAlign: BorderSide.strokeAlignOutside),
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(5),
+                          )),
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Center(
+                              child: Text(
+                                textAlign: TextAlign.center,
+                                "Sign In",
+                                style: TextStyle(
+                                  color: ColorLib.kPrimary,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),

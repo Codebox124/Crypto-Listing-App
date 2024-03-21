@@ -1,5 +1,6 @@
 import 'package:crypto_app/routes/app_routes.dart';
 import 'package:crypto_app/views/pages/onboard_screen.dart';
+import 'package:crypto_app/views/pages/signin.dart';
 import 'package:crypto_app/views/pages/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -19,6 +20,13 @@ class AppPages {
         path: "/${AppRoutes.signup}",
         pageBuilder: (context, state) => const MaterialPage(
           child: SignupPage(),
+        ),
+      ),
+      GoRoute(
+        name: AppRoutes.signin,
+        path: "/${AppRoutes.signin}",
+        pageBuilder: (context, state) => const MaterialPage(
+          child: SignInPage(),
         ),
       ),
     ],
