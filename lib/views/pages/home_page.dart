@@ -84,7 +84,7 @@ class HomePage extends StatelessWidget {
               ),
               Container(
                 height: 128,
-                child: Placeholder(),
+                child: Image.asset("assets/img/Portfolio Graph.png"),
               ),
               const SizedBox(
                 height: 30,
@@ -112,7 +112,7 @@ class HomePage extends StatelessWidget {
                 height: 30,
               ),
               Container(
-                height: 190,
+                height: 200,
                 child: ListView.separated(
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
@@ -125,8 +125,8 @@ class HomePage extends StatelessWidget {
                               color: Colors.grey.withOpacity(0.5),
                               spreadRadius: 0.5,
                               blurRadius: 8,
-                              offset:
-                                  Offset(0, 3), // changes position of shadow
+                              offset: const Offset(
+                                  0, 3), // changes position of shadow
                             ),
                           ],
                         ),
@@ -188,7 +188,7 @@ class HomePage extends StatelessWidget {
                               const SizedBox(
                                 height: 15,
                               ),
-                              Column(
+                              const Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text("24H Vol."),
