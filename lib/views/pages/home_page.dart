@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:crypto_app/utils/color_lib.dart';
 import 'package:flutter/material.dart';
 
+import 'package:intl/intl.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -50,6 +52,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final currencyFormat = NumberFormat.currency(locale: 'en_US', symbol: '\$');
     return Scaffold(
       body: isLoading
           ? Center(child: CircularProgressIndicator())
@@ -164,6 +167,8 @@ class _HomePageState extends State<HomePage> {
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) {
                             final crypto = cryptocurrencies[index];
+                            final price =
+                                currencyFormat.format(crypto['current_price']);
                             return Container(
                               decoration: BoxDecoration(
                                 color: Colors.white,
@@ -206,7 +211,7 @@ class _HomePageState extends State<HomePage> {
                                               height: 6,
                                             ),
                                             Text(
-                                              '\$${crypto['current_price']}',
+                                              price,
                                               style: TextStyle(
                                                 color: ColorLib.ktextBlack,
                                                 fontSize: 16,
@@ -290,7 +295,9 @@ class _HomePageState extends State<HomePage> {
                         itemCount: 4,
                         itemBuilder: (context, index) {
                           final crypto = cryptocurrencies[index];
-                    
+                          final price =
+                              currencyFormat.format(crypto['current_price']);
+
                           return ListTile(
                             leading: SizedBox(
                               height: 40,
@@ -301,7 +308,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             title: Text(crypto['name']),
                             subtitle: Text(crypto['symbol']),
-                            trailing: Text('\$${crypto['current_price']}'),
+                            trailing: Text(price),
                             // Display the sparkline graph
                           );
                         },

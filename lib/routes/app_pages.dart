@@ -10,10 +10,10 @@ class AppPages {
   static final router = GoRouter(
     routes: [
       GoRoute(
-        name: AppRoutes.home,
+        name: AppRoutes.onboard,
         path: "/",
         pageBuilder: (context, state) => const MaterialPage(
-          child: HomeScreen(),
+          child: OnBoardingScreen(),
         ),
       ),
       GoRoute(
@@ -30,13 +30,13 @@ class AppPages {
           child: SignInPage(),
         ),
       ),
-      //  GoRoute(
-      //   name: AppRoutes.home,
-      //   path: "/${AppRoutes.home}",
-      //   pageBuilder: (context, state) => const MaterialPage(
-      //     child: HomeScreen(),
-      //   ),
-      // ),
+       GoRoute(
+        name: AppRoutes.home,
+        path: "/${AppRoutes.home}",
+        pageBuilder: (context, state) => const MaterialPage(
+          child: HomeScreen(),
+        ),
+      ),
     ],
   );
 }
