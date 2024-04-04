@@ -239,7 +239,6 @@ class _HomePageState extends State<HomePage> {
                                     const SizedBox(
                                       height: 15,
                                     ),
-                                  
                                     const SizedBox(
                                       height: 15,
                                     ),
@@ -284,6 +283,29 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ],
+                    ),
+                    Container(
+                      height: 300,
+                      child: ListView.builder(
+                        itemCount: 4,
+                        itemBuilder: (context, index) {
+                          final crypto = cryptocurrencies[index];
+                    
+                          return ListTile(
+                            leading: SizedBox(
+                              height: 40,
+                              width: 40,
+                              child: Image.network(
+                                crypto['image'],
+                              ),
+                            ),
+                            title: Text(crypto['name']),
+                            subtitle: Text(crypto['symbol']),
+                            trailing: Text('\$${crypto['current_price']}'),
+                            // Display the sparkline graph
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),
