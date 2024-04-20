@@ -33,6 +33,7 @@ class _HomePageState extends State<HomePage> {
       '/api/v3/coins/markets',
       {
         'vs_currency': 'usd',
+        'sparkline': 'true',
         'x_cg_demo_api_key': 'CG-PqL6H2pe4dPmpT2oBhtDi8Hw'
       },
     );
@@ -132,13 +133,6 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(
                       height: 30,
                     ),
-                    Container(
-                      height: 128,
-                      child: Image.asset("assets/img/Portfolio Graph.png"),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
                     const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -162,7 +156,7 @@ class _HomePageState extends State<HomePage> {
                       height: 30,
                     ),
                     Container(
-                      height: 160,
+                      height: 170,
                       child: ListView.separated(
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) {
@@ -241,9 +235,11 @@ class _HomePageState extends State<HomePage> {
                                         fontSize: 16,
                                       ),
                                     ),
-                                    const SizedBox(
-                                      height: 15,
-                                    ),
+                                   
+                                    // Container(
+                                    //     height: 90,
+                                    //     child: Image.network(
+                                    //         crypto['sparkline_in_7d']('thumb'))),
                                     const SizedBox(
                                       height: 15,
                                     ),

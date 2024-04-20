@@ -1,4 +1,5 @@
 import 'package:crypto_app/views/pages/home_page.dart';
+import 'package:crypto_app/views/pages/market.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
@@ -8,17 +9,15 @@ import 'package:crypto_app/utils/color_lib.dart';
 enum Menus { home, trade, market, favorite, wallet }
 
 final pages = [
- HomePage(),
-  Center(
+  const HomePage(),
+  const Center(
     child: Text("Trade"),
   ),
-  Center(
-    child: Text("Market"),
-  ),
-  Center(
+  const MarketPage(),
+  const Center(
     child: Text("Favorite"),
   ),
-  Center(
+  const Center(
     child: Text("Wallet"),
   )
 ];
@@ -109,7 +108,7 @@ class BottomBar extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                       IconButton(
+                        IconButton(
                             onPressed: () => onTap(Menus.market),
                             icon: SvgPicture.asset(
                               "assets/icons/Vector (4).svg",
@@ -140,7 +139,7 @@ class BottomBar extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                         IconButton(
+                        IconButton(
                             onPressed: () => onTap(Menus.favorite),
                             icon: SvgPicture.asset(
                               "assets/icons/Star 1.svg",
@@ -171,7 +170,7 @@ class BottomBar extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                         IconButton(
+                        IconButton(
                             onPressed: () => onTap(Menus.wallet),
                             icon: SvgPicture.asset(
                               "assets/icons/Vector 57.svg",
