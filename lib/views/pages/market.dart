@@ -14,10 +14,10 @@ class _MarketPageState extends State<MarketPage> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Scaffold(
-        body: SafeArea(
+        body: SingleChildScrollView(
           child: ListView(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
@@ -25,10 +25,10 @@ class _MarketPageState extends State<MarketPage> {
                 children: [
                   IconButton(
                       onPressed: () {},
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.arrow_back_ios,
                       )),
-                  Text(
+                  const Text(
                     "Market",
                     style: TextStyle(
                       fontSize: 20,
@@ -37,26 +37,28 @@ class _MarketPageState extends State<MarketPage> {
                   ),
                   IconButton(
                       onPressed: () {},
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.filter_alt_outlined,
                       ))
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               SearchBar(
-                elevation: MaterialStatePropertyAll(1.5),
+                elevation: const MaterialStatePropertyAll(1.5),
                 hintText: 'Cryptocoin search ',
-                hintStyle: MaterialStatePropertyAll(
+                hintStyle: const MaterialStatePropertyAll(
                     TextStyle(color: ColorLib.koutline)),
                 leading: SizedBox(
                   width: 20,
                   child: Image.asset("assets/icons/search.png"),
                 ),
               ),
-             
-            
+              TabBar(
+                isScrollable: true,
+                tabs: [],
+              ),
             ],
           ),
         ),

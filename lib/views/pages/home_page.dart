@@ -1,13 +1,15 @@
 import 'dart:convert';
 
-import 'package:http/http.dart' as http;
-import 'package:crypto_app/utils/color_lib.dart';
 import 'package:flutter/material.dart';
-
+import 'package:getwidget/components/loader/gf_loader.dart';
+import 'package:getwidget/types/gf_loader_type.dart';
+import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:crypto_app/utils/color_lib.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -20,7 +22,9 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    fetchCryptoData();
+    if (cryptocurrencies.isEmpty) {
+      fetchCryptoData();
+    }
   }
 
   Future<void> fetchCryptoData() async {
@@ -51,19 +55,37 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  RefreshController _refreshController =
+      RefreshController(initialRefresh: false);
+
+  void _onRefresh() async {
+    await fetchCryptoData(); // Refresh data when pulled down
+    _refreshController.refreshCompleted();
+  }
+
+  void _onLoading() async {
+    // No need to implement this method if you only refresh data on pull down
+  }
   @override
   Widget build(BuildContext context) {
     final currencyFormat = NumberFormat.currency(locale: 'en_US', symbol: '\$');
+
     return Scaffold(
       body: isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? Center(child: GFLoader(type: GFLoaderType.square))
           : Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: SafeArea(
+              child: SmartRefresher(
+                enablePullDown: true,
+                enablePullUp: true,
+                onLoading: _onLoading,
+                controller: _refreshController,
+                onRefresh: _onRefresh,
+                header: WaterDropHeader(),
                 child: ListView(
                   children: [
                     const SizedBox(
-                      height: 20,
+                      height: 40,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -158,110 +180,110 @@ class _HomePageState extends State<HomePage> {
                     Container(
                       height: 170,
                       child: ListView.separated(
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            final crypto = cryptocurrencies[index];
-                            final price =
-                                currencyFormat.format(crypto['current_price']);
-                            return Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 0.5,
-                                    blurRadius: 8,
-                                    offset: const Offset(
-                                        0, 3), // changes position of shadow
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          final crypto = cryptocurrencies[index];
+                          final price =
+                              currencyFormat.format(crypto['current_price']);
+                          return Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 0.5,
+                                  blurRadius: 8,
+                                  offset: const Offset(
+                                      0, 3), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            width: 156,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            crypto['symbol']
+                                                .toString()
+                                                .toUpperCase(),
+                                            style: TextStyle(
+                                              color: ColorLib.ktextBlack,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 6,
+                                          ),
+                                          Text(
+                                            price,
+                                            style: TextStyle(
+                                              color: ColorLib.ktextBlack,
+                                              fontSize: 16,
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 40,
+                                        width: 40,
+                                        child: Image.network(
+                                          crypto['image'],
+                                        ),
+                                      )
+                                    ],
                                   ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    '${crypto['ath_change_percentage'].toStringAsFixed(2)}%',
+                                    style: TextStyle(
+                                      color: crypto['ath_change_percentage'] < 0
+                                          ? Colors.red
+                                          : ColorLib.ktextgreen,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+
+                                  // Container(
+                                  //     height: 90,
+                                  //     child: Image.network(
+                                  //         crypto['sparkline_in_7d']('thumb'))),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text("24H Vol."),
+                                      Text('${crypto['total_volume']}')
+                                    ],
+                                  )
                                 ],
                               ),
-                              width: 156,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              crypto['symbol']
-                                                  .toString()
-                                                  .toUpperCase(),
-                                              style: TextStyle(
-                                                color: ColorLib.ktextBlack,
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 20,
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: 6,
-                                            ),
-                                            Text(
-                                              price,
-                                              style: TextStyle(
-                                                color: ColorLib.ktextBlack,
-                                                fontSize: 16,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 40,
-                                          width: 40,
-                                          child: Image.network(
-                                            crypto['image'],
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text(
-                                      '${crypto['ath_change_percentage'].toStringAsFixed(2)}%',
-                                      style: TextStyle(
-                                        color:
-                                            crypto['ath_change_percentage'] < 0
-                                                ? Colors.red
-                                                : ColorLib.ktextgreen,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                   
-                                    // Container(
-                                    //     height: 90,
-                                    //     child: Image.network(
-                                    //         crypto['sparkline_in_7d']('thumb'))),
-                                    const SizedBox(
-                                      height: 15,
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text("24H Vol."),
-                                        Text('${crypto['total_volume']}')
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                          separatorBuilder: (context, index) {
-                            return const SizedBox(
-                              width: 20,
-                            );
-                          },
-                          itemCount: cryptocurrencies.length),
+                            ),
+                          );
+                        },
+                        separatorBuilder: (context, index) {
+                          return const SizedBox(
+                            width: 20,
+                          );
+                        },
+                        itemCount: 5,
+                      ),
                     ),
                     const SizedBox(
                       height: 30,
